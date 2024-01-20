@@ -1,0 +1,59 @@
+﻿@using RunGroupAplication.ViewModels
+
+@model HomeViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<section class="space-lg background-image" data-jarallax data-speed="0.2">
+    <div class="container" id="background-image">
+        <div class="row align-items-center justify-content-between">
+            <div class="col-12 col-md-6 col-lg-5 section-intro">
+                <h1 class="display-3 mt-5">Meetup and connect with runners near you </h1>
+                <h3 class="lead">
+                    A community of devoted runners, passionate about running and life. Ready to find your accountability partner?
+                </h3>
+            </div>
+    </div>
+</section>
+<section>
+    <div class="container">
+        @if (Model.Clubs == null)
+        {
+            <h3 class="fw-light mt-2">
+                There are no running clubs in your area! <a asp-area="" asp-controller="Account"
+                                                            asp-action="Login" id="login">Login</a> and create one!
+            </h3>
+        }
+        else
+        {
+            <div class="row justify-content-between mb-5 mt-2">
+                <div class="col-auto">
+                    <h3>Running clubs near @Model.City, @Model.State</h3>
+                </div>
+
+            </div>
+            <ul class="row feature-list feature-list-sm">
+                @foreach (var item in Model.Clubs)
+                {
+                    <li class="col-12 col-md-6 col-lg-4">
+                        <div class="card">
+                            <a href="#">
+                                <img class="card-img-top" src="@item.Image" alt="Card image cap">
+                            </a>
+                            <div class="card-body">
+                                
+                                    <h4 class="card-title">@item.Title</h4>
+                                    <p class="card-text text-body">@item.ShortDescription</p>
+                              
+                            </div>
+                            <a type="btn btn-success" asp-controller="Club" asp-action="Detail" asp-route-id="@item.Id"
+                               class="btn btn-outline-dark border-2 fw-bold">View</a>
+                        </div>
+                        
+                    </li>
+                }
+            </ul>
+        }
+    </div>
+</section>

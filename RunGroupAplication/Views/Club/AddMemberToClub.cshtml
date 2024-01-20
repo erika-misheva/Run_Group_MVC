@@ -1,0 +1,16 @@
+﻿@model Club;
+
+<h2>Successfully Joined </h2>
+<p>Congratulations! You have successfully joined our running club. Here are some details:</p>
+
+<ul>
+    <li><strong>Club Name:</strong> @Model.Title</li>
+    <li><strong>Club Category:</strong> @Model.ClubCategory</li>
+</ul>
+
+<img src="@Model.Image" alt="club"/>
+
+<p>Get ready to enjoy the benefits of being a member of our run club. Happy running!</p>
+
+
+<a href="@Url.Action("Index", "Home")" class="btn btn-outline-dark">Back to Home</a>

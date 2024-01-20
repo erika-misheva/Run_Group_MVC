@@ -1,0 +1,160 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+    margin-bottom: 5%;
+    color: black;
+    background-color: #F8F0C6;
+    margin: 0 auto;
+    width: 100%;
+    padding-bottom: 5%;
+    text-decoration: none;
+}
+#background-image {
+    position: relative;
+    height: 80vh;
+    width: 100%;
+    background-image: url('../images/Ready-set-trail-How-to-prepare-for-trail-running-small.jpg');
+    background-size: 100% 80vh;
+    background-repeat: no-repeat;
+    z-index: -1;
+    color: white;
+}
+
+
+.card-body {
+    background-color: white;
+    color: #132A13;
+    border-radius: 3%;
+}
+.card{
+    margin-bottom: 3vh;
+    background-color:white;
+}
+
+.card-image-top{
+    width:100%;
+    height:225px;
+}
+
+#runnerContainer{
+    padding-top:3%;
+
+}
+#card-box{
+    background-color:white;
+}
+footer {
+    position:absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 10px;
+}
+.img-fluid{
+    padding-top:5%;
+}
+.card shadow-sm{
+
+}
+.card-body {
+    height: 18em;
+    overflow: auto;
+}
+
+#card-box {
+    /*background-color: #ECEBE4;*/
+    color: #1C1C1C;
+}
+ul{
+    list-style: none;
+}
+#row-space{
+    display: flex;
+    justify-content:space-around;
+}
+div .user-card {
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+}
+#user-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+.detail-container {
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 3%;
+    margin-top: 3%;
+    padding: 2vh;
+}
+.view{
+    width: 120px;
+}
+.error {
+    position: relative;
+    height: 80vh;
+    width: 100%;
+    background-image: url('../images/123236765-disconnected-cable-text-warning-message-sorry-something-went-wrong-oops-404-error-page-raster-removebg-preview.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: black;
+}
+
+#cardCarousel, #member {
+    background-color: rgba(255, 255, 255, 0.1);
+    margin-bottom: 3%;
+    margin-top: 3%;
+    padding: 2vh;
+    width: 100%;
+}
+
+.custom-width-btn {
+    width: fit-content; 
+    display: inline-block;
+}
+
+.custom-button {
+    padding-left: 30px; 
+    padding-right: 30px; 
+}
+.account-custom{
+    color:black;
+    margin-top:25px;
+}
+header {
+    background-color: #000; 
+    color: #fff; 
+    padding: 1rem; 
+    color: white;
+}
+.custom-container {
+    padding-left: 0;
+    padding-right: 0;
+    margin-right:0;
+    margin-left: 0;
+    background-color: black;
+}
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    color: black;
+}
+
+.carousel {
+    background-color: rgba(0, 0, 0, 0.5);
+}

@@ -1,0 +1,42 @@
+﻿
+<div class="album py-5 bg-body-tertiary">
+    <div class="container">
+        <ul class="row feature-list feature-list-sm">
+            @foreach (var item in Model)
+            {
+                <li class="col-12 col-md-6 col-lg-4">
+                    <div class="card shadow-sm" id="card-box">
+                        <div class="card">
+
+                            <img class="card-img-top" src="@item.Image" alt="Card image cap">
+
+                            <div class="card-body">
+
+                                <h4 class="card-title">@item.Title</h4>
+                                <p class="card-text text-body">@item.ShortDescription</p>
+
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center ms-3 me-3">
+                                <div class="btn-group">
+
+                                    <a asp-controller="Club" asp-action="Detail" asp-route-id="@item.Id" type="button" class="btn btn-outline-dark view">View</a>
+
+                                    @if (User.Identity.IsAuthenticated && User.IsInRole("admin"))
+                                    {
+                                        <a type="button" class="btn btn btn-outline-primary" asp-controller="Club" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                                        <a type="button" class="btn btn btn-outline-primary" asp-controller="Club" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                                    }
+
+                                </div>
+                                <small class="text-body-secondary">@item.ClubCategory</small>
+                            </div>
+                        </div>
+
+                    </div>
+                </li>
+            }
+        </ul>
+
+        @* </div> *@
+    </div>
+</div>

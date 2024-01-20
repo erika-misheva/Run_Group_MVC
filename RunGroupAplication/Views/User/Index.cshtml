@@ -1,0 +1,41 @@
+﻿@using RunGroupAplication.ViewModels
+@model List<UserViewModel>
+
+<section class="flush-with-above">
+    <div class="container" id="runnerContainer">
+        <div class="row row-cols-1 row-cols-md-3 g-5" id="row-space">
+            @foreach (var user in Model)
+            {
+                <div class="col mb-4">
+                    <div class="user-card justify-content-center" id="card-box" style="width: 18rem;">
+                        @if (user.ProfileImageUrl == null || user.ProfileImageUrl == "")
+                        {
+                            <img class="rounded-circle mt-2" src="~/images/profile.webp" alt="Generic placeholder image" width="140" height="140">
+                        }
+                        else
+                        {
+                            <img class="rounded-circle mt-2" src="@user.ProfileImageUrl" alt="Generic placeholder image" width="140" height="140">
+                        }
+
+                        <h4>@user.UserName</h4>
+                        <p>
+                            @{
+                                var mileage = user.Mileage == null ? "/" : user.Mileage.ToString();
+                                var pace = user.Pace == null ? "/" : user.Mileage.ToString();
+                            }
+                            <td>@mileage mile at @pace mph</td>
+                        </p>
+                        <p>
+                            <a class="btn btn-dark" asp-controller="User" asp-action="Detail" asp-route-id="@user.Id">
+                                View Profile
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+
+

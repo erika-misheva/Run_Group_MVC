@@ -1,0 +1,127 @@
+﻿@model Club
+
+<div class="container">
+
+
+    <div class="row">
+
+        <div class="col-md-5">
+            <img class="img-fluid" src="@Model.Image" alt="">
+        </div>
+
+        <div class="col-md-7">
+            <h3 class="my-3">@Model.Title</h3>
+            <p>@Model.LongDescription</p>
+        </div>
+
+        @if (Model.AppUserCreator != null)
+        {
+        <div class="d-flex w-100 justify-content-between">
+            
+                <div class="row mb-1 w-75 position-center mr-3">
+                    <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+
+                        <div class="col-md-4 p-4 d-flex flex-column align-items-center">
+                            <h3 class="mb-0">Club Creator</h3>
+                            <h3 class="mb-0">@Model.AppUserCreator.FirstName @Model.AppUserCreator.Surname</h3>
+                            <div class="mb-1 text-body-secondary">Get in touch</div>
+                            <p class="card-text mb-auto">@Model.AppUserCreator.UserName</p>
+                            <p class="card-text mb-auto">@Model.AppUserCreator.PhoneNumber</p>
+
+                        </div>
+                        <div class="col-md-4 p-4 d-flex flex-column align-items-center">
+                            <strong class="d-inline-block mb-2 text-primary-emphasis">Address</strong>
+
+                            <p class="card-text mb-auto">Street: @Model.Address.Street</p>
+                            <p class="card-text mb-auto">City: @Model.Address.City</p>
+                            <p class="card-text mb-auto">State: @Model.Address.State</p>
+                            <a class="btn btn-outline-dark custom-width-btn" asp-controller="User" asp-action="Detail" asp-route-id="@Model.AppUserCreator.Id">
+                                View Profile
+                            </a>
+                        </div>
+                        <div class="col-md-4 p-4 d-flex justify-content-end">
+
+                            <img class="bd-placeholder-img h-100" src="@Model.AppUserCreator.ProfileImageUrl" alt="Profile Image" height="200" width="180" />
+
+                        </div>
+                    </div>
+                </div>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <div class="col-md-3 w-25 ml-3" id="member">
+
+                        <h3>Become a member with one click</h3>
+                        <a asp-controller="Club" asp-action="AddMemberToClub" asp-route-id="@Model.Id" type="button" class="btn btn-outline-dark btn-lg">Join our Club!</a>
+                    
+                </div>
+                }
+                </div>
+            }
+
+
+        @if (Model.Members.Count > 0)
+        {
+            <div  class="carousel slide p-2 border rounded mt-3" data-bs-ride="carousel" data-bs-interval="false">
+                <div class="col-12">
+                    <div class="carousel-inner">
+                        <h3>Our members:</h3>
+                        @{
+                            var membersList = Model.Members.ToList();
+                            for (int i = 0; i < membersList.Count; i += 3)
+                            {
+                                <div class="carousel-item @(i == 0 ? "active" : "")">
+                                    <div class="row feature-list feature-list-sm d-flex justify-content-center align-items-center">
+
+                                        @for (int j = i; j < i + 3 && j < membersList.Count; j++)
+                                        {
+                                            <div class="col-md-3">
+                                                <div class="proj-imgbx" style="padding-left: 10px; padding-right: 10px;">
+                                                    <!-- Adjust padding as needed -->
+                                                    <div class="card" style="width: 18rem;">
+                                                        <h5 class="card-title text-black text-center">@membersList[j].UserName</h5>
+                                                        @if (@membersList[j].ProfileImageUrl == null || @membersList[j].ProfileImageUrl == "")
+                                                        {
+                                                            <img src="~/images/profile.webp" alt="Generic placeholder image" class="card-img-top" alt="..." width="180" height="220">
+                                                        }
+                                                        else
+                                                        {
+                                                            <img src="@membersList[j].ProfileImageUrl" alt="Generic placeholder image" class="card-img-top" alt="..." width="180" height="220">
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#cardCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon text" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#cardCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+            
+        }
+    @if (Model.AppUserCreator is null && User.Identity.IsAuthenticated)
+    {
+        <div class="row col-12 mt-5">
+            <div class="col-md-8">
+                <h3>Become a member with one click</h3>
+                <a asp-controller="Club" asp-action="AddMemberToClub" asp-route-id="@Model.Id" type="button" class="btn btn-outline-dark btn-lg">Join our Club!</a>
+            </div>
+            <div class="col-md-4 ml-3">
+                <h3 class="fs-2 text-body-emphasis">Location<i class="bi bi-geo-alt-fill"></i></h3>
+                <p>@Model.Address.Street</p>
+                <p>@Model.Address.City</p>
+                <p>@Model.Address.State</p>
+            </div>
+        </div>
+    }
+
+</div>

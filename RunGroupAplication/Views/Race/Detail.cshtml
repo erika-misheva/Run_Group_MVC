@@ -1,0 +1,68 @@
+﻿
+@model Race
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<div class="container">
+
+
+    <div class="row">
+
+        <div class="col-md-5">
+            <img class="img-fluid" src="@Model.Image" alt="">
+        </div>
+
+        <div class="col-md-7">
+            <h3 class="my-3">@Model.Title</h3>
+            <p>@Model.LongDescription</p>
+        </div>
+
+    </div>
+    <div>
+        <h3 class="mt-5">Ready to run? Reach out to the creator <i class="bi bi-person-arms-up"></i></h3>
+    </div>
+    <div class="container" id="featured-3">
+        <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+            <div class="feature col border border-black border-3 rounded p-3 text-center">
+                <h3 class="fs-2 text-body-emphasis">Location<i class="bi bi-geo-alt-fill"></i></h3>
+                <p>@Model.Address.Street</p>
+                <p>@Model.Address.City</p>
+                <p>@Model.Address.State</p>
+            </div>
+            <div class="feature col border border-black border-3 rounded p-3 text-center">
+                <h3 class="fs-2 text-body-emphasis">Creator</h3>
+                @if (Model.AppUser.ProfileImageUrl is null || Model.AppUser.ProfileImageUrl == "")
+                {
+                    <img class="rounded-circle mt-2" src="~/images/profile.webp" alt="Generic placeholder image" width="140" height="140">
+                }
+                <img class="rounded-circle mt-2" src="@Model.AppUser.ProfileImageUrl" alt="Generic placeholder image" width="140" height="140">
+                <p>@Model.AppUser.FirstName @Model.AppUser.Surname</p>
+                <p>@Model.AppUser.UserName</p>
+                <p>@Model.AppUser.PhoneNumber</p>
+                <a class="btn btn-outline-dark custom-width-btn" asp-controller="User" asp-action="Detail" asp-route-id="@Model.AppUser.Id">
+                    View Profile
+                </a>
+            </div>
+            <div class="feature col border border-black border-3 rounded p-3 text-center">
+                <h3 class="fs-2 text-body-emphasis">Date <i class="bi bi-calendar-check"></i></h3>
+                <p>@Model.StartTime.ToShortDateString()</p>
+                <h3 class="fs-2 text-body-emphasis">Time <i class="bi bi-clock"></i></h3>
+                <p>@Model.StartTime.ToShortTimeString()</p>
+                <h3 class="fs-2 text-body-emphasis">Price <i class="bi bi-wallet2"></i></h3>
+                @if (@Model.EntryFee == 0)
+                {
+                    <p>Free</p>
+                }
+                else
+                {
+                    <p>@Model.EntryFee <i class="bi bi-currency-euro"></i></p>
+                }
+            </div>
+        </div>
+    </div>
+
+<!-- /.container -->
+</div>

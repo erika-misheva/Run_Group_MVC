@@ -1,0 +1,26 @@
+﻿@using RunningForce.ViewModels
+@model ErrorViewModel
+@{
+    ViewData["Title"] = "Error";
+}
+
+<div class="error">
+    <h3>@Model.ErrorMessage</h3>
+
+    @if (Model.ShowRequestId)
+    {
+        <p>
+            <strong>Request ID:</strong> <code>@Model.RequestId</code>
+        </p>
+    }
+
+    @if (Model.Exception != null)
+    {
+        <p>
+            <strong>Exception:</strong> <code>@Model.Exception.Message</code>
+        </p>
+    }
+    <a asp-controller="Home" asp-action="Index" class="btn btn-outline-dark btn-lg">Go back to home</a>
+@* 
+    <h4>Go back to <a href="@Url.Action("Index", "Home")">Home</a> page.</h4> *@
+</div>

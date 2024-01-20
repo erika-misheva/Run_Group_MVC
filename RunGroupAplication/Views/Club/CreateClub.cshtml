@@ -1,0 +1,57 @@
+﻿@model CreateClubViewModel
+@using RunGroupAplication.Enum;
+@using RunGroupAplication.ViewModels
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<form asp-action="CreateClubPost"  method="post" enctype="multipart/form-data">
+    <h3 class="mt-4">Create a new Club</h3>
+    <input type="hidden" id="AppUserId" name="AppUserId" asp-for="AppUserId" />
+    <div class="mb-3">
+        <label asp-for="Title" class="form-label">Title</label>
+        <input asp-for="Title" class="form-control" placeholder="Title">
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="ShortDescription" class="form-label"> Short Description</label>
+        <textarea asp-for="ShortDescription" class="form-control" placeholder="Short Description"></textarea>
+        <span asp-validation-for="ShortDescription" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="LongDescription" class="form-label"> Long Description</label>
+        <textarea asp-for="LongDescription" class="form-control" placeholder="Long Description"></textarea>
+        <span asp-validation-for="LongDescription" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="ClubCategory" class="form-label">Category</label>
+        <select asp-for="ClubCategory" asp-items="@Html.GetEnumSelectList<ClubCategory>()">
+            <option>--Select--</option>
+        </select>
+        <span asp-validation-for="ClubCategory" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Address.Street" class="form-label">Street</label>
+        <input asp-for="Address.Street" class="form-control" placeholder="Address">
+        <span asp-validation-for="Address.Street" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Address.City" class="form-label">City</label>
+        <input asp-for="Address.City" class="form-control" placeholder="Address">
+        <span asp-validation-for="Address.City" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Address.State" class="form-label">State</label>
+        <input asp-for="Address.State" class="form-control" placeholder="Address">
+        <span asp-validation-for="Address.State" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Image" class="form-label">Image</label>
+        <input asp-for="Image" type="file" class="form-control" placeholder="Image">
+        <span asp-validation-for="Image" class="text-danger"></span>
+    </div>
+    <button class="btn btn-dark rounded-pill px-3 p-1 mt-4 mb-4" type="submit">Submit <i class="bi bi-check-circle" style="color:white"></i></button>
+    <a class=" rounded-pill px-3 p-1 mt-4 mb-4 btn btn-outline-danger " asp-controller="Dashboard" asp-action="Index">Cancel<i class="bi bi-x-circle" style="margin-left: 3px"></i></a>
+</form>
